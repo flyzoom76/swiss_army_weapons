@@ -19,9 +19,9 @@ class CfgVehicles
         scope = 2;
         displayName = "StGw 57";
         descriptionShort = "Sturmgewehr 57 - Swiss assault rifle";
-        model = "\swiss_army_weapons\stgw57\data\stgw57_rifle.p3d";
+        model = "\swiss_army_weapons\stgw57\data\models\stgw57_rifle.p3d";
 
-        picture = "\swiss_army_weapons\stgw57\data\stgw57_rifle.edds";
+        picture = "\swiss_army_weapons\stgw57\data\textures\stgw57_rifle.edds";
         icon = "";
 
         // Physically simulated object, no pickup/function yet

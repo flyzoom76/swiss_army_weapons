@@ -14,9 +14,11 @@ P:\swiss_army_weapons\
         ├── model.cfg           <- LOD/Skeleton Konfiguration
         ├── $PBOPREFIX$         <- PBO Pfad: swiss_army_weapons\stgw57
         └── data\
-            ├── stgw57_rifle.p3d          <- Konvertiert aus stgw57_rifle.fbx
-            ├── Sturmgewehr57_BaseColor.paa
-            └── Sturmgewehr57_Normal.paa
+            ├── textures\
+            │   ├── Sturmgewehr57_BaseColor.paa
+            │   └── Sturmgewehr57_Normal.paa
+            └── models\
+                └── stgw57_rifle.p3d      <- Konvertiert aus stgw57_rifle.fbx
 ```
 
 ## Voraussetzungen (Tools)
@@ -43,8 +45,8 @@ P:\swiss_army_weapons\
 
 ## Dateien die noch hinzugefügt werden müssen (lokal, nicht in Git)
 
-- `data/stgw57_rifle.p3d` - aus FBX konvertiert
-- `data/Sturmgewehr57_BaseColor.paa` - bereits vorhanden
-- `data/Sturmgewehr57_Normal.paa` - bereits vorhanden
+- `data/models/stgw57_rifle.p3d` - aus FBX konvertiert
+- `data/textures/Sturmgewehr57_BaseColor.paa` - bereits vorhanden
+- `data/textures/Sturmgewehr57_Normal.paa` - bereits vorhanden
 
 > Binäre Dateien (.paa, .p3d, .fbx) werden separat per Git LFS oder lokal verwaltet.

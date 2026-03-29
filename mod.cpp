@@ -1,0 +1,10 @@
+name = "Swiss Army Weapons";
+picture = "";
+logo = "";
+logoOver = "";
+tooltip = "Swiss Army Weapons - StGw57 and more";
+tooltipOwned = "Swiss Army Weapons - StGw57 and more";
+overview = "Adds Swiss Army weapons to DayZ, starting with the Sturmgewehr 57 (StGw57).";
+author = "";
+version = "0.1";
+versionAR = 1;

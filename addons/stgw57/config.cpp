@@ -22,7 +22,7 @@ class CfgVehicles
         model = "\swiss_army_weapons\stgw57\data\models\stgw57_rifle.p3d";
 
         picture = "\swiss_army_weapons\stgw57\data\textures\stgw57_rifle.edds";
-        icon = "";
+        icon = "\swiss_army_weapons\stgw57\data\textures\stgw57_rifle_icon.edds";
 
         // Physically simulated object, no pickup/function yet
         physLayer = "item_large";

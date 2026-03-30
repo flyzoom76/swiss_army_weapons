@@ -12,6 +12,7 @@ Verwendung:    python make_icons.py mein_gewehr.png
 """
 
 import sys
+from pathlib import Path
 from PIL import Image
 
 
@@ -72,12 +73,27 @@ def main():
         print("Verwendung: python make_icons.py <eingabe.png>")
         sys.exit(1)
 
-    input_path = sys.argv[1]
+    input_arg = Path(sys.argv[1])
+
+    # Datei suchen: erst absolut/relativ zum CWD, dann relativ zum Script-Ordner
+    script_dir = Path(__file__).parent
+    if input_arg.exists():
+        input_path = input_arg
+    elif (script_dir / input_arg).exists():
+        input_path = script_dir / input_arg
+    else:
+        print(f"Fehler: Datei '{input_arg}' nicht gefunden.")
+        print(f"  Gesucht in: {input_arg.resolve()}")
+        print(f"  Gesucht in: {(script_dir / input_arg).resolve()}")
+        sys.exit(1)
+
+    # Output-Dateien im gleichen Ordner wie die Eingabedatei speichern
+    out_dir = input_path.parent
 
     try:
         img = Image.open(input_path).convert("RGBA")
-    except FileNotFoundError:
-        print(f"Fehler: Datei '{input_path}' nicht gefunden.")
+    except Exception as e:
+        print(f"Fehler beim Oeffnen der Datei: {e}")
         sys.exit(1)
 
     print(f"Eingabe: {input_path} ({img.width}x{img.height}px)")
@@ -88,13 +104,15 @@ def main():
 
     # Inventarbild: 512x256px
     picture = fit_centered(cropped, 512, 256)
-    picture.save("stgw57_rifle_picture.png")
-    print("Erstellt: stgw57_rifle_picture.png (512x256px) -> umbenennen zu stgw57_rifle.edds")
+    picture_out = out_dir / "stgw57_rifle_picture.png"
+    picture.save(picture_out)
+    print(f"Erstellt: {picture_out} (512x256px) -> umbenennen zu stgw57_rifle.edds")
 
     # Quickbar-Icon: 64x64px
     icon = fit_centered(cropped, 64, 64)
-    icon.save("stgw57_rifle_icon.png")
-    print("Erstellt: stgw57_rifle_icon.png (64x64px)     -> umbenennen zu stgw57_rifle_icon.edds")
+    icon_out = out_dir / "stgw57_rifle_icon.png"
+    icon.save(icon_out)
+    print(f"Erstellt: {icon_out} (64x64px)     -> umbenennen zu stgw57_rifle_icon.edds")
 
     print("\nNaechste Schritte:")
     print("1. Beide PNG in GIMP oder Paint.NET oeffnen")

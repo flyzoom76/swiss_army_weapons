@@ -53,8 +53,8 @@ def fit_centered(img: Image.Image, target_w: int, target_h: int) -> Image.Image:
 
     resized = img.resize((new_w, new_h), Image.LANCZOS)
 
-    # Schwarzer Hintergrund (DayZ Standard für Icons)
-    canvas = Image.new("RGBA", (target_w, target_h), (0, 0, 0, 255))
+    # Transparenter Hintergrund (Alpha = 0)
+    canvas = Image.new("RGBA", (target_w, target_h), (0, 0, 0, 0))
 
     # Zentrieren
     offset_x = (target_w - new_w) // 2

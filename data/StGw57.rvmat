@@ -11,7 +11,7 @@ VertexShaderID="Super";
 class Stage1
 {
     // CO - Color/Albedo (BaseColor Textur)
-    texture="swiss_army_weapons\stgw57\data\textures\Sturmgewehr57_BaseColor.paa";
+    texture="swiss_army_weapons\data\Sturmgewehr57_BaseColor.paa";
     uvSource="tex";
     class uvTransform
     {
@@ -24,8 +24,8 @@ class Stage1
 
 class Stage2
 {
-    // NOHQ - Normal Map (enthält Normal + Occlusion + Height)
-    texture="swiss_army_weapons\stgw57\data\textures\Sturmgewehr57_Normal.paa";
+    // NOHQ - Normal Map
+    texture="swiss_army_weapons\data\Sturmgewehr57_Normal.paa";
     uvSource="tex";
     class uvTransform
     {
@@ -38,7 +38,7 @@ class Stage2
 
 class Stage3
 {
-    // SMDI - Specular/Metallic/Detail (Platzhalter - eigene SMDI .paa später ersetzen)
+    // SMDI - Specular/Metallic/Detail (Platzhalter)
     texture="#(argb,8,8,3)color(0,0,0,0,SMDI)";
     uvSource="tex";
     class uvTransform

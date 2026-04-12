@@ -221,4 +221,10 @@ class CfgNonAIVehicles
 		inventorySlot = "magazine";
 		model = "swiss_army_weapons\data\stgw57\data\stgw57_24mag.p3d";
 	};
+	class Proxystgw57_diopter: ProxyAttachment
+	{
+		scope = 0;
+		inventorySlot = "weaponOptics";
+		model = "swiss_army_weapons\data\stgw57\data\stgw57_diopter.p3d";
+	};
 };

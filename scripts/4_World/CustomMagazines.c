@@ -1,0 +1,1 @@
+class Mag_stgw57_24rnd: MagazineStorage {};

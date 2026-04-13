@@ -187,6 +187,7 @@ class CfgVehicles
 			opticsZoomMax=1.0;
 			opticsZoomInit=1.0;
 			modelOptics="-";
+			PPBlurProperties=0;
 		};
 		class DamageSystem
 		{

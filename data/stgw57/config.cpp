@@ -200,36 +200,6 @@ class CfgVehicles
 			// Damage parameters
 		};
 	};
-	class stgw57_opticview_longrange: ItemOptics_Base
-	{
-		scope=2;
-		displayName="StGw57 Long Range Scope";
-		descriptionShort="Long range optic for the StGw57. Suitable for engagements up to 800m.";
-		model="swiss_army_weapons\data\stgw57\data\opticview_longrange.p3d";
-		rotationFlags=17;
-		itemSize[]={2,1};
-		hiddenSelections[]={"zbytek"};
-		hiddenSelectionsTextures[]={"swiss_army_weapons\data\stgw57\data\opticview_longrange_co.paa"};
-		hiddenSelectionsMaterials[]={"swiss_army_weapons\data\stgw57\data\opticview_longrange.rvmat"};
-		memoryPointCamera="eyeScope";
-		cameraDir="cameraDir";
-		inventorySlot[]={"weaponOptics"};
-		class OpticsInfo
-		{
-			memoryPointCamera="eyeScope";
-			cameraDir="cameraDir";
-			opticsZoomMin=0.25;
-			opticsZoomMax=0.125;
-			opticsZoomInit=0.25;
-			modelOptics="-";
-			PPBlurProperties=0;
-			PPDOFProperties[]={0,0,0,0,0,0};
-		};
-		class DamageSystem
-		{
-			// Damage parameters
-		};
-	};
 };
 
 class cfgMagazines
@@ -279,6 +249,6 @@ class CfgNonAIVehicles
 	{
 		scope = 0;
 		inventorySlot = "weaponOptics";
-		model = "swiss_army_weapons\data\stgw57\data\opticview_longrange.p3d";
+		model = "DZ\weapons\attachments\optics\opticview_longrange.p3d";
 	};
 };

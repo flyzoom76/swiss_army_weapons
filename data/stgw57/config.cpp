@@ -182,7 +182,7 @@ class CfgVehicles
 			opticsZoomMin = 1.0;
 			opticsZoomMax = 1.0;
 			opticsZoomInit = 1.0;
-			memoryPointCamera = "eyescope";
+			memoryPointCamera = "eye";
 			modelOptics = -1;
 		};
 		class DamageSystem

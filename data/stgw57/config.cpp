@@ -167,8 +167,8 @@ class cfgWeapons
 };
 class CfgVehicles
 {
-	class ItemOptics;
-	class stgw57_diopter: ItemOptics
+	class ItemOptics_Base;
+	class stgw57_diopter: ItemOptics_Base
 	{
 		scope=2;
 		displayName="StGw75_Diopter";

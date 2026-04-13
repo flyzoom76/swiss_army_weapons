@@ -176,13 +176,17 @@ class CfgVehicles
 		model="swiss_army_weapons\data\stgw57\data\stgw57_diopter.p3d";
 		rotationFlags=0;
 		itemSize[]={2,1};
+		memoryPointCamera="eyeScope";
+		cameraDir="cameraDir";
 		inventorySlot[]={"weaponOptics"};
 		class OpticsInfo
 		{
-			opticsZoomMin = 1.0;
-			opticsZoomMax = 1.0;
-			opticsZoomInit = 1.0;
-			modelOptics = -1;
+			memoryPointCamera="eyeScope";
+			cameraDir="cameraDir";
+			opticsZoomMin=1.0;
+			opticsZoomMax=1.0;
+			opticsZoomInit=1.0;
+			modelOptics="-";
 		};
 		class DamageSystem
 		{

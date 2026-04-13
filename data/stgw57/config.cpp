@@ -174,7 +174,7 @@ class CfgVehicles
 		displayName="StGw75_Diopter";
 		descriptionShort="Iron sight for StGw57.";
 		model="swiss_army_weapons\data\stgw57\data\stgw57_diopter.p3d";
-		rotationFlags=0;
+		rotationFlags=17;
 		itemSize[]={1,1};
 		hiddenSelections[]={"zbytek"};
 		hiddenSelectionsTextures[]={"swiss_army_weapons\data\stgw57\data\stgw57_diopter_co.paa"};

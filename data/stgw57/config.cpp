@@ -170,7 +170,7 @@ class cfgWeapons
 class CfgVehicles
 {
 	class ItemOptics_Base;
-	class opticview_longrange: ItemOptics_Base
+	class LongrangeOptic: ItemOptics_Base
 	{
 		inventorySlot[] += {"weaponOptics"};
 	};
@@ -253,6 +253,6 @@ class CfgNonAIVehicles
 	{
 		scope = 0;
 		inventorySlot = "weaponOptics";
-		model = "DZ\weapons\attachments\optics\opticview_longrange.p3d";
+		model = "DZ\weapons\attachments\optics\optic_longrange.p3d";
 	};
 };

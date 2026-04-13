@@ -188,6 +188,7 @@ class CfgVehicles
 			opticsZoomInit=1.0;
 			modelOptics="-";
 			PPBlurProperties=0;
+			PPDOFProperties[]={0,0,0,0,0,0};
 		};
 		class DamageSystem
 		{

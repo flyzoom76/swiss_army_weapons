@@ -170,6 +170,10 @@ class cfgWeapons
 class CfgVehicles
 {
 	class ItemOptics_Base;
+	class opticview_longrange: ItemOptics_Base
+	{
+		inventorySlot[] += {"weaponOptics"};
+	};
 	class stgw57_diopter: ItemOptics_Base
 	{
 		scope=2;

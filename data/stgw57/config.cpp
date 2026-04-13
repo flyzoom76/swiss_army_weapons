@@ -45,6 +45,7 @@ class cfgWeapons
                 simpleHiddenSelections[] = {"hide_barrel","folding_raised","folding_lowered"};
 		hiddenSelections[] = {"zbytek"};
 		hiddenSelectionsTextures[] = {"swiss_army_weapons\data\stgw57\data\stgw57_co.paa"};
+		hiddenSelectionsMaterials[] = {"swiss_army_weapons\data\stgw57\data\stgw57.rvmat"};
 		modes[] = {"FullAuto","SemiAuto"};
 		class SemiAuto: Mode_SemiAuto
 		{

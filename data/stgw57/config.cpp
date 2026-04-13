@@ -177,6 +177,13 @@ class CfgVehicles
 		rotationFlags=0;
 		itemSize[]={2,1};
 		inventorySlot[]={"weaponOptics"};
+		class OpticsInfo
+		{
+			opticsZoomMin = 1.0;
+			opticsZoomMax = 1.0;
+			opticsZoomInit = 1.0;
+			modelOptics = -1;
+		};
 		class DamageSystem
 		{
 			// Damage parameters

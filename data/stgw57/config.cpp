@@ -47,6 +47,15 @@ class cfgWeapons
 		hiddenSelectionsTextures[] = {"swiss_army_weapons\data\stgw57\data\stgw57_co.paa"};
 		hiddenSelectionsMaterials[] = {"swiss_army_weapons\data\stgw57\data\stgw57.rvmat"};
 		modes[] = {"FullAuto","SemiAuto"};
+		class AnimationSources
+		{
+			class korn_fold
+			{
+				source = "user";
+				animPeriod = 0.3;
+				initPhase = 0;
+			};
+		};
 		class SemiAuto: Mode_SemiAuto
 		{
 			soundSetShot[] = {"stgw57_shot_SoundSet","stgw57_shot_SoundSet","stgw57_shot_SoundSet"};

@@ -11,8 +11,8 @@ class stgw57_Base : RifleBoltLock_Base
 		Print("[StGw57] EEItemAttached: " + item.GetType());
 		if (item.IsKindOf("LongrangeOptic"))
 		{
-			Print("[StGw57] LongrangeOptic erkannt - klappe Korn ein");
-			SetAnimationPhase("korn_fold", 1.0);
+			Print("[StGw57] LongrangeOptic erkannt - blende Korn aus");
+			SetSimpleHiddenSelectionState(1, false);
 		}
 	}
 
@@ -22,8 +22,8 @@ class stgw57_Base : RifleBoltLock_Base
 		Print("[StGw57] EEItemDetached: " + item.GetType());
 		if (item.IsKindOf("LongrangeOptic"))
 		{
-			Print("[StGw57] LongrangeOptic entfernt - klappe Korn aus");
-			SetAnimationPhase("korn_fold", 0.0);
+			Print("[StGw57] LongrangeOptic entfernt - zeige Korn");
+			SetSimpleHiddenSelectionState(1, true);
 		}
 	}
 };

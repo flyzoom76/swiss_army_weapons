@@ -42,7 +42,7 @@ class cfgWeapons
 		initSpeedMultiplier = 0.4;
 		recoilModifier[] = {1.0,0.9,1.0};
 		swayModifier[] = {1.4,1.4,0.8};
-                simpleHiddenSelections[] = {"hide_barrel"};
+                simpleHiddenSelections[] = {"hide_barrel", "korn_fold"};
 		hiddenSelections[] = {"zbytek"};
 		hiddenSelectionsTextures[] = {"swiss_army_weapons\data\stgw57\data\stgw57_co.paa"};
 		hiddenSelectionsMaterials[] = {"swiss_army_weapons\data\stgw57\data\stgw57.rvmat"};
@@ -165,15 +165,6 @@ class cfgWeapons
 		scope = 2;
 		hiddenSelectionsTextures[] = {"swiss_army_weapons\data\stgw57\data\stgw57_co.paa"};
 		hiddenSelectionsMaterials[] = {"swiss_army_weapons\data\stgw57\data\stgw57.rvmat"};
-		class AnimationSources
-		{
-			class korn_fold
-			{
-				source = "user";
-				animPeriod = 0.3;
-				initPhase = 1;
-			};
-		};
 	};
 };
 class CfgVehicles

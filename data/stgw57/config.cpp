@@ -24,7 +24,7 @@ class cfgWeapons
 		displayName = "StGw57";
 		descriptionShort = "The Sturmgewehr 57 was developed by SIG to serve as the standard service rifle of the Swiss Armed Forces. Fed from 24-round detachable magazines, chambered for 7.5x55mm (GP11) Swiss";
 		model = "swiss_army_weapons\data\stgw57\data\stgw57.p3d";
-		attachments[] = {"weaponOptics","weaponWrap","weaponBayonet","suppressorImpro"};
+		attachments[] = {"weaponOptics","weaponWrap","weaponBayonet","suppressorImpro","weaponBipodStgw57"};
 		itemSize[] = {8,3};
 		weight = 5700;
 		absorbency = 0.0;
@@ -170,9 +170,41 @@ class cfgWeapons
 class CfgVehicles
 {
 	class ItemOptics_Base;
+	class Inventory_Base;
 	class LongrangeOptic: ItemOptics_Base
 	{
 		inventorySlot[] += {"weaponOptics"};
+	};
+	class stgw57_bipod: Inventory_Base
+	{
+		scope = 2;
+		displayName = "StGw57 Bipod";
+		descriptionShort = "Bipod for StGw57.";
+		model = "swiss_army_weapons\data\stgw57\data\stgw57_bipod.p3d";
+		rotationFlags = 17;
+		inventorySlot[] = {"weaponBipodStgw57"};
+		weight = 300;
+		itemSize[] = {2,1};
+		hiddenSelections[] = {"zbytek"};
+		hiddenSelectionsTextures[] = {"swiss_army_weapons\data\stgw57\data\stgw57_bipod_co.paa"};
+		hiddenSelectionsMaterials[] = {"swiss_army_weapons\data\stgw57\data\stgw57_bipod.rvmat"};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+					healthLevels[] = {
+						{1.0,{"swiss_army_weapons\data\stgw57\data\stgw57_bipod.rvmat"}},
+						{0.7,{"swiss_army_weapons\data\stgw57\data\stgw57_bipod.rvmat"}},
+						{0.5,{"swiss_army_weapons\data\stgw57\data\stgw57_bipod_damage.rvmat"}},
+						{0.3,{"swiss_army_weapons\data\stgw57\data\stgw57_bipod_damage.rvmat"}},
+						{0.0,{"swiss_army_weapons\data\stgw57\data\stgw57_bipod_destruct.rvmat"}}
+					};
+				};
+			};
+		};
 	};
 	class stgw57_diopter: ItemOptics_Base
 	{
@@ -248,5 +280,11 @@ class CfgNonAIVehicles
 		scope = 0;
 		inventorySlot = "weaponOptics";
 		model = "swiss_army_weapons\data\stgw57\data\stgw57_diopter.p3d";
+	};
+	class Proxystgw57_bipod: ProxyAttachment
+	{
+		scope = 0;
+		inventorySlot = "weaponBipodStgw57";
+		model = "swiss_army_weapons\data\stgw57\data\stgw57_bipod.p3d";
 	};
 };

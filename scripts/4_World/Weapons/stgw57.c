@@ -13,6 +13,7 @@ class stgw57_Base : RifleBoltLock_Base
 		{
 			Print("[StGw57] LongrangeOptic erkannt - klappe Korn ein");
 			SetAnimationPhase("korn_fold", 1);
+			Print("[StGw57] korn_fold phase nach set: " + GetAnimationPhase("korn_fold"));
 		}
 	}
 

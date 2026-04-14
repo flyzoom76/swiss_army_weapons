@@ -12,8 +12,7 @@ class stgw57_Base : RifleBoltLock_Base
 		if (item.IsKindOf("LongrangeOptic"))
 		{
 			Print("[StGw57] LongrangeOptic erkannt - klappe Korn ein");
-			GetGame().ObjectSetAnimPhase(this, "korn_fold", 1.0);
-			Print("[StGw57] korn_fold phase nach set: " + GetGame().ObjectGetAnimPhase(this, "korn_fold"));
+			SetAnimationPhase("korn_fold", 1.0);
 		}
 	}
 
@@ -24,7 +23,7 @@ class stgw57_Base : RifleBoltLock_Base
 		if (item.IsKindOf("LongrangeOptic"))
 		{
 			Print("[StGw57] LongrangeOptic entfernt - klappe Korn aus");
-			GetGame().ObjectSetAnimPhase(this, "korn_fold", 0.0);
+			SetAnimationPhase("korn_fold", 0.0);
 		}
 	}
 };

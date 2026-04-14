@@ -47,6 +47,14 @@ class cfgWeapons
 		hiddenSelectionsTextures[] = {"swiss_army_weapons\data\stgw57\data\stgw57_co.paa"};
 		hiddenSelectionsMaterials[] = {"swiss_army_weapons\data\stgw57\data\stgw57.rvmat"};
 		modes[] = {"FullAuto","SemiAuto"};
+		class Melee
+		{
+			range = 1;
+			swingTime = 0.5;
+			action = "MeleeKnifeSlash";
+			ammo = "MeleeLightBlunt";
+			useCursor = 0;
+		};
 		class SemiAuto: Mode_SemiAuto
 		{
 			soundSetShot[] = {"stgw57_shot_SoundSet","stgw57_shot_SoundSet","stgw57_shot_SoundSet"};

@@ -213,9 +213,16 @@ class CfgVehicles
 		descriptionShort = "Bajonett für das StGw57.";
 		model = "swiss_army_weapons\data\stgw57\data\stgw57_bayonet.p3d";
 		rotationFlags = 17;
-		inventorySlot[] = {"weaponBayonet"};
+		animClass = "Knife";
+		suicideAnim = "onehanded";
+		inventorySlot[] = {"weaponBayonet","Knife"};
 		weight = 250;
 		itemSize[] = {3,1};
+		itemModelLength = 0.3;
+		itemAttachOffset = -0.18;
+		recoilModifier[] = {1,1,1};
+		swayModifier[] = {1,1,1};
+		itemInfo[] = {"Knife"};
 		hiddenSelections[] = {"zbytek"};
 		hiddenSelectionsTextures[] = {"swiss_army_weapons\data\stgw57\data\stgw57_bayonet_co.paa"};
 		hiddenSelectionsMaterials[] = {"swiss_army_weapons\data\stgw57\data\stgw57_bayonet.rvmat"};

@@ -12,7 +12,7 @@ class stgw57_Base : RifleBoltLock_Base
 		if (item.IsKindOf("LongrangeOptic"))
 		{
 			Print("[StGw57] LongrangeOptic erkannt - blende Korn aus");
-			SetSimpleHiddenSelectionState(1, false);
+			SetSimpleHiddenSelectionState(1, true);
 		}
 	}
 
@@ -23,7 +23,7 @@ class stgw57_Base : RifleBoltLock_Base
 		if (item.IsKindOf("LongrangeOptic"))
 		{
 			Print("[StGw57] LongrangeOptic entfernt - zeige Korn");
-			SetSimpleHiddenSelectionState(1, true);
+			SetSimpleHiddenSelectionState(1, false);
 		}
 	}
 };

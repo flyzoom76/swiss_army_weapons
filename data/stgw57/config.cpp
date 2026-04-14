@@ -165,6 +165,15 @@ class cfgWeapons
 		scope = 2;
 		hiddenSelectionsTextures[] = {"swiss_army_weapons\data\stgw57\data\stgw57_co.paa"};
 		hiddenSelectionsMaterials[] = {"swiss_army_weapons\data\stgw57\data\stgw57.rvmat"};
+		class AnimationSources
+		{
+			class korn_fold
+			{
+				source = "user";
+				animPeriod = 0.3;
+				initPhase = 1;
+			};
+		};
 	};
 };
 class CfgVehicles

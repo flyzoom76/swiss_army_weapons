@@ -288,3 +288,14 @@ class CfgNonAIVehicles
 		model = "swiss_army_weapons\data\stgw57\data\stgw57_bipod.p3d";
 	};
 };
+
+class CfgSlots
+{
+	class weaponBipodStgw57
+	{
+		name = "weaponBipodStgw57";
+		displayName = "Bipod";
+		description = "Bipod slot for StGw57";
+		selection = "bipod";
+	};
+};

@@ -249,7 +249,7 @@ class CfgNonAIVehicles
 		inventorySlot = "weaponOptics";
 		model = "swiss_army_weapons\data\stgw57\data\stgw57_diopter.p3d";
 	};
-	class Proxystgw57_opticview_longrange: ProxyAttachment
+	class Proxyoptic_longrange: ProxyAttachment
 	{
 		scope = 0;
 		inventorySlot = "weaponOptics";

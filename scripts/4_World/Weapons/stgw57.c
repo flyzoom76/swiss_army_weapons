@@ -5,16 +5,16 @@ class stgw57_Base : RifleBoltLock_Base
 		return new M4a1Recoil(this);
 	}
 
-	override void EEItemAttached(EntityAI item, string slotName)
+	override void EEItemAttached(EntityAI item, string slot_name)
 	{
-		super.EEItemAttached(item, slotName);
+		super.EEItemAttached(item, slot_name);
 		if (item.IsKindOf("LongrangeOptic"))
 			SetAnimationPhase("korn_fold", 1);
 	}
 
-	override void EEItemDetached(EntityAI item, string slotName)
+	override void EEItemDetached(EntityAI item, string slot_name)
 	{
-		super.EEItemDetached(item, slotName);
+		super.EEItemDetached(item, slot_name);
 		if (item.IsKindOf("LongrangeOptic"))
 			SetAnimationPhase("korn_fold", 0);
 	}

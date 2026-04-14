@@ -206,6 +206,37 @@ class CfgVehicles
 			};
 		};
 	};
+	class stgw57_bayonet: Inventory_Base
+	{
+		scope = 2;
+		displayName = "StGw57 Bajonett";
+		descriptionShort = "Bajonett für das StGw57.";
+		model = "swiss_army_weapons\data\stgw57\data\stgw57_bayonet.p3d";
+		rotationFlags = 17;
+		inventorySlot[] = {"weaponBayonet"};
+		weight = 250;
+		itemSize[] = {3,1};
+		hiddenSelections[] = {"zbytek"};
+		hiddenSelectionsTextures[] = {"swiss_army_weapons\data\stgw57\data\stgw57_bayonet_co.paa"};
+		hiddenSelectionsMaterials[] = {"swiss_army_weapons\data\stgw57\data\stgw57_bayonet.rvmat"};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+					healthLevels[] = {
+						{1.0,{"swiss_army_weapons\data\stgw57\data\stgw57_bayonet.rvmat"}},
+						{0.7,{"swiss_army_weapons\data\stgw57\data\stgw57_bayonet.rvmat"}},
+						{0.5,{"swiss_army_weapons\data\stgw57\data\stgw57_bayonet_damage.rvmat"}},
+						{0.3,{"swiss_army_weapons\data\stgw57\data\stgw57_bayonet_damage.rvmat"}},
+						{0.0,{"swiss_army_weapons\data\stgw57\data\stgw57_bayonet_destruct.rvmat"}}
+					};
+				};
+			};
+		};
+	};
 	class stgw57_diopter: ItemOptics_Base
 	{
 		scope=2;
@@ -286,6 +317,12 @@ class CfgNonAIVehicles
 		scope = 0;
 		inventorySlot = "weaponBipodStgw57";
 		model = "swiss_army_weapons\data\stgw57\data\stgw57_bipod.p3d";
+	};
+	class Proxystgw57_bayonet: ProxyAttachment
+	{
+		scope = 0;
+		inventorySlot = "weaponBayonet";
+		model = "swiss_army_weapons\data\stgw57\data\stgw57_bayonet.p3d";
 	};
 };
 

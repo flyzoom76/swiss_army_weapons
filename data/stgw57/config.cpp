@@ -58,7 +58,7 @@ class cfgWeapons
 		class SemiAuto: Mode_SemiAuto
 		{
 			soundSetShot[] = {"stgw57_shot_SoundSet","stgw57_shot_SoundSet","stgw57_shot_SoundSet"};
-			soundSetShotExt[] = {{"stgw57_SilencedShot_SoundSet","stgw57_SilencedShot_SoundSet","stgw57_SilencedShot_SoundSet"}};
+			soundSetShotExt[] = {"stgw57_SilencedShot_SoundSet","stgw57_SilencedShot_SoundSet","stgw57_SilencedShot_SoundSet"};
 			reloadTime = 0.11;
 			dispersion = 0.0007;
 			magazineSlot = "magazine";
@@ -66,7 +66,7 @@ class cfgWeapons
 		class FullAuto: Mode_FullAuto
 		{
 			soundSetShot[] = {"stgw57_shot_SoundSet","stgw57_shot_SoundSet","stgw57_shot_SoundSet"};
-			soundSetShotExt[] = {{"stgw57_SilencedShot_SoundSet","stgw57_SilencedShot_SoundSet","stgw57_SilencedShot_SoundSet"}};
+			soundSetShotExt[] = {"stgw57_SilencedShot_SoundSet","stgw57_SilencedShot_SoundSet","stgw57_SilencedShot_SoundSet"};
 			reloadTime = 0.075;
 			dispersion = 0.0007;
 			magazineSlot = "magazine";

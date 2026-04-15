@@ -1,32 +1,38 @@
 class CfgPatches
 {
-    class swiss_army_weapons
-    {
-        units[] = {"StGw57_Rifle"};
-        weapons[] = {};
-        requiredVersion = 0.1;
-        requiredAddons[] = {"DZ_Data"};
-    };
+	class swiss_army_weapons
+	{
+		units[]={};
+		weapons[]={};
+		requiredVersion=0.1;
+		requiredAddons[]={};
+	};
 };
-
-class CfgVehicles
+class CfgMods
 {
-    class ItemBase;
-
-    class StGw57_Rifle : ItemBase
-    {
-        scope = 2;
-        displayName = "StGw 57";
-        descriptionShort = "Sturmgewehr 57 - Swiss assault rifle";
-        model = "\swiss_army_weapons\stgw57_rifle.p3d";
-
-        picture = "\swiss_army_weapons\data\stgw57_rifle.edds";
-        icon = "\swiss_army_weapons\data\stgw57_rifle_icon.edds";
-
-        physLayer = "item_large";
-        weight = 5100;
-
-        class AnimationSources {};
-        class Particles {};
-    };
+	class swiss_army_weapons
+	{
+		dir="swiss_army_weapons";
+		picture="";
+		action="";
+		hideName=1;
+		hidePicture=1;
+		name="swiss_army_weapons";
+		credits="";
+		author="zoom";
+		authorID="0";
+		version="1.0";
+		extra=0;
+		type="mod";
+		dependencies[] = {"World"};
+		class defs
+		{
+			class worldScriptModule
+			{
+				value = "";
+				files[] = {"swiss_army_weapons\scripts\4_World"};
+			};
+		};
+	};
 };
+

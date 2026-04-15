@@ -1,0 +1,32 @@
+# Sicherstellen dass du auf develop bist
+git checkout develop
+
+# Änderungen speichern und hochladen
+git add .
+git commit -m "Beschreibung"
+git push
+
+# Git -> Lokal
+git pull origin develop
+
+
+Oder nur bestimmte Dateien hochladen:
+# Nur eine bestimmte Datei
+git add dateiname.cpp
+
+# Nur einen Ordner
+git add data/
+
+
+git status	Zeigt welche Dateien neu/geändert sind
+
+
+
+""""
+git clone -b develop https://github.com/flyzoom76/swiss_army_weapons.git
+
+Das war's! Danach:
+
+cd swiss_army_weapons
+git branch
+""""

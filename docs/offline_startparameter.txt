@@ -1,0 +1,1 @@
+-nosplash -skipIntro -mission=.\missions\dayzOffline.chernarusplus

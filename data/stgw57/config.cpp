@@ -251,6 +251,25 @@ class CfgVehicles
 				};
 			};
 		};
+		class MeleeModes
+		{
+			class Default
+			{
+				ammo = "MeleeSharpLight_4";
+				range = 1.2;
+			};
+			class Heavy
+			{
+				ammo = "MeleeSharpHeavy_4";
+				range = 1.2;
+			};
+			class Sprint
+			{
+				ammo = "MeleeSharpHeavy_4";
+				range = 3.3;
+			};
+		};
+		soundImpactType = "metal";
 	};
 	class stgw57_diopter: ItemOptics_Base
 	{
@@ -335,7 +354,7 @@ class CfgNonAIVehicles
 	};
 	class Proxystgw57_bayonet: ProxyAttachment
 	{
-		scope = 0;
+		scope = 2;
 		inventorySlot = "weaponBayonet";
 		model = "swiss_army_weapons\data\stgw57\data\stgw57_bayonet.p3d";
 	};

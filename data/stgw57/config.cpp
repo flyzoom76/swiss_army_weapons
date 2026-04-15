@@ -7,7 +7,7 @@ class CfgPatches
 		weapons[] = {"stgw57"};
 		requiredVersion = 0.1;
 		requiredAddons[] = {"DZ_Weapons_Firearms","DZ_Weapons_Magazines","DZ_Data", "DZ_Weapons_Optics"};
-		magazines[] = {"Mag_stgw57_24rnd"};
+		magazines[] = {"Mag_stgw57_24rnd","Mag_stgw57_24rnd_treib"};
 	};
 };
 class Mode_Safe;
@@ -35,8 +35,8 @@ class cfgWeapons
 		chamberSize = 1;
 		barrelArmor = 10.125;
 		chamberedRound = "";
-		chamberableFrom[] = {"Ammo_750x55"};
-		magazines[] = {"Mag_stgw57_24rnd"};
+		chamberableFrom[] = {"Ammo_750x55","Ammo_750_treib"};
+		magazines[] = {"Mag_stgw57_24rnd","Mag_stgw57_24rnd_treib"};
 		magazineSwitchTime = 0.2;
 		ejectType = 1;
 		initSpeedMultiplier = 0.4;
@@ -326,6 +326,30 @@ class cfgMagazines
 				{
 					hitpoints = 800;
 					healthLevels[] = {{1.0,{"swiss_army_weapons\data\stgw57\data\stgw57.rvmat"}},{0.7,{"swiss_army_weapons\data\stgw57\data\stgw57.rvmat"}},{0.5,{"swiss_army_weapons\data\stgw57\data\stgw57_damage.rvmat"}},{0.3,{"swiss_army_weapons\data\stgw57\data\stgw57_damage.rvmat"}},{0.0,{"swiss_army_weapons\data\stgw57\data\stgw57_destruct.rvmat"}}};
+				};
+			};
+		};
+		class Mag_stgw57_24rnd_treib: Magazine_Base
+		{
+			scope = 2;
+			displayName = "StGw57 24Mag Treibladung";
+			descriptionShort = "Magazin fuer das StGw57 mit 24 Treibladungen (Platzpatronen).";
+			model = "swiss_army_weapons\data\stgw57\data\stgw57_24mag.p3d";
+			weight = 100;
+			itemSize[] = {1,3};
+			count = 24;
+			ammo = "Bullet_750_treib";
+			ammoItems[] = {"Ammo_750_treib"};
+			tracersEvery = 0;
+			class DamageSystem
+			{
+				class GlobalHealth
+				{
+					class Health
+					{
+						hitpoints = 800;
+						healthLevels[] = {{1.0,{"swiss_army_weapons\data\stgw57\data\stgw57.rvmat"}},{0.7,{"swiss_army_weapons\data\stgw57\data\stgw57.rvmat"}},{0.5,{"swiss_army_weapons\data\stgw57\data\stgw57_damage.rvmat"}},{0.3,{"swiss_army_weapons\data\stgw57\data\stgw57_damage.rvmat"}},{0.0,{"swiss_army_weapons\data\stgw57\data\stgw57_destruct.rvmat"}}};
+					};
 				};
 			};
 		};

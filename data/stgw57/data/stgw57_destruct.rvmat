@@ -8,7 +8,7 @@ PixelShaderID = "Super";
 VertexShaderID = "Super";
 class Stage1
 {
-	texture="swiss_army_weapons\data\stgw57\data\stgw57_NOHQ.paa";
+	texture="swiss_army_weapons\data\stgw57\data\stgw57_nohq.paa";
 	uvSource="tex";
 	class uvTransform
 	{
@@ -56,7 +56,7 @@ class Stage4
 };
 class Stage5
 {
-	texture="swiss_army_weapons\data\stgw57\data\stgw57_SMDI.paa";
+	texture="swiss_army_weapons\data\stgw57\data\stgw57_smdi.paa";
 	uvSource="tex";
 	class uvTransform
 	{

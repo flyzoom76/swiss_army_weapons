@@ -1,0 +1,10 @@
+# Sicherstellen dass du auf develop bist
+git checkout develop
+
+# Änderungen speichern und hochladen
+git add .
+git commit -m "Beschreibung"
+git push
+
+# Git -> Lokal
+git pull origin develop

@@ -24,7 +24,7 @@ class cfgWeapons
 		displayName = "StGw57";
 		descriptionShort = "The Sturmgewehr 57 was developed by SIG to serve as the standard service rifle of the Swiss Armed Forces. Fed from 24-round detachable magazines, chambered for 7.5x55mm (GP11) Swiss";
 		model = "swiss_army_weapons\data\stgw57\data\stgw57.p3d";
-		attachments[] = {"weaponOptics","weaponWrap","weaponBayonet","suppressorImpro","weaponBipodStgw57"};
+		attachments[] = {"weaponOptics","weaponWrap","weaponBayonet","suppressorImpro","weaponBipodStgw57","weaponGrenadeStgw57"};
 		itemSize[] = {8,3};
 		weight = 5700;
 		absorbency = 0.0;
@@ -382,6 +382,12 @@ class CfgNonAIVehicles
 		inventorySlot = "weaponBayonet";
 		model = "swiss_army_weapons\data\stgw57\data\stgw57_bayonet.p3d";
 	};
+	class Proxystgw57_grenade_frag: ProxyAttachment
+	{
+		scope = 0;
+		inventorySlot = "weaponGrenadeStgw57";
+		model = "swiss_army_weapons\data\grenades\data\stgw57_grenade_frag.p3d";
+	};
 };
 
 class CfgSlots
@@ -392,5 +398,12 @@ class CfgSlots
 		displayName = "Bipod";
 		description = "Bipod slot for StGw57";
 		selection = "bipod";
+	};
+	class weaponGrenadeStgw57
+	{
+		name = "weaponGrenadeStgw57";
+		displayName = "Gewehrgranate";
+		description = "Granaten-Aufsteckpunkt fuer StGw57";
+		selection = "grenade";
 	};
 };

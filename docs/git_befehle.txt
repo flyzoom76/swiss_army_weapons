@@ -17,11 +17,16 @@ git add dateiname.cpp
 # Nur einen Ordner
 git add data/
 
-# Dann commit + push wie oben
 
-Schnell-Übersicht was git macht:
-Befehl	Was es tut
 git status	Zeigt welche Dateien neu/geändert sind
-git add .	Markiert alle Dateien zum Hochladen
-git commit -m "..."	Speichert einen Snapshot mit Beschreibung
-git push	Lädt alles zu GitHub hoch
+
+
+
+""""
+git clone -b develop https://github.com/flyzoom76/swiss_army_weapons.git
+
+Das war's! Danach:
+
+cd swiss_army_weapons
+git branch
+""""

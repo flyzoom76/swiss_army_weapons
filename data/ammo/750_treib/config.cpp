@@ -45,18 +45,18 @@ class CfgAmmo
 		casing = "FxCartridge_762";
 		round = "FxRound_308Win";
 		spawnPileType = "Ammo_750_treib";
-		hit = 12;
+		hit = 0;
 		indirectHit = 0;
 		indirectHitRange = 0;
 		visibleFire = 22;
 		audibleFire = 22;
 		visibleFireTime = 4;
 		airLock = 1;
-		initSpeed = 900;
-		typicalSpeed = 900;
-		airFriction = -0.00066;
-		caliber = 1.5;
-		deflecting = 20;
+		initSpeed = 400;
+		typicalSpeed = 400;
+		airFriction = -0.01;
+		caliber = 0;
+		deflecting = 0;
 		damageBarrel = 0;
 		damageBarrelDestroyed = 0;
 		weight = 0.0162;
@@ -68,15 +68,15 @@ class CfgAmmo
 			bleedThreshold = 1;
 			class Health
 			{
-				damage = 155;
+				damage = 0;
 			};
 			class Blood
 			{
-				damage = 100;
+				damage = 0;
 			};
 			class Shock
 			{
-				damage = 125;
+				damage = 0;
 			};
 		};
 		class NoiseHit

@@ -80,10 +80,10 @@ class stgw57_Base : RifleBoltLock_Base
 		vector muzzleWorld = ModelToWorld(GetSelectionPositionLS("usti hlavne"));
 		vector barrelDir   = GetDirection();
 
-		Object spawnedObj = GetGame().CreateObject("StGw57_Grenade_Frag", muzzleWorld, false, false, false);
-		StGw57_Grenade_Frag grenade = StGw57_Grenade_Frag.Cast(spawnedObj);
-		if (grenade)
-			grenade.ActivateAsProjectile(barrelDir * 80.0);
+		Object spawnedObj = GetGame().CreateObject("Bullet_stgw57_grenade_frag", muzzleWorld, false, true, false);
+		EntityAI projectile = EntityAI.Cast(spawnedObj);
+		if (projectile)
+			projectile.SetVelocity(barrelDir * 80.0);
 
 		// Grenade consumed – triggers EEItemDetached which stops the loop
 		GetGame().ObjectDelete(grenadeAtt);

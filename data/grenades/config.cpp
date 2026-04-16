@@ -9,6 +9,36 @@ class CfgPatches
 	};
 };
 
+class CfgAmmo
+{
+	class Bullet_Base;
+	class Bullet_stgw57_grenade_frag: Bullet_Base
+	{
+		scope          = 1;
+		model          = "swiss_army_weapons\data\grenades\data\stgw57_grenade_frag.p3d";
+		hit            = 5;
+		indirectHit    = 100;
+		indirectHitRange = 10;
+		indirectHitRangeMultiplier = 1;
+		explosive      = 1;
+		caliber        = 1;
+		deflecting     = 0;
+		timeToLive     = 10;
+		initSpeed      = 80;
+		typicalSpeed   = 80;
+		airFriction    = -0.001;
+		weight         = 0.4;
+		soundSetExplosion[] = {};
+		class DamageApplied
+		{
+			type = "Explosion_Heavy";
+			class Health { damage = 100; };
+			class Blood  { damage = 80;  };
+			class Shock  { damage = 100; };
+		};
+	};
+};
+
 class CfgVehicles
 {
 	class Inventory_Base;

@@ -103,8 +103,6 @@ class stgw57_Base : RifleBoltLock_Base
 		vector pos    = GetPosition();
 		float  radius = 10.0;
 
-		SEffectManager.PlaySoundOnPos("Explosion_GrenadeHand_SoundSet", pos);
-
 		array<Object> objects = new array<Object>();
 		GetGame().GetObjectsAtPosition(pos, radius, objects, null);
 
@@ -127,8 +125,6 @@ class stgw57_Base : RifleBoltLock_Base
 			return;
 
 		float radius = 10.0;
-
-		SEffectManager.PlaySoundOnPos("Explosion_GrenadeHand_SoundSet", pos);
 
 		array<Object> objects = new array<Object>();
 		GetGame().GetObjectsAtPosition(pos, radius, objects, null);

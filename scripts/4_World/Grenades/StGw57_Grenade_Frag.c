@@ -9,10 +9,9 @@ class StGw57_Grenade_Frag extends ItemBase
 	{
 		m_IsProjectile = true;
 		m_Velocity     = velocity;
-		// Update flight every 50 ms
-		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(UpdateFlight, 50, true);
-		// Safety: self-detonate after 6 seconds if terrain check never triggers
-		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(Detonate, 6000, false);
+		// DIAGNOSTIC: no flight, just detonate after 10 seconds
+		// to confirm object survives past creation
+		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(Detonate, 10000, false);
 	}
 
 	private void UpdateFlight()

@@ -70,10 +70,15 @@ class StGw57_Grenade_Frag extends ItemBase
 	}
 
 	// Cleanup timers if the object is deleted externally (e.g. admin tool)
+	// Only remove callbacks if THIS instance is the active projectile —
+	// prevents deletion of the weapon attachment from wiping the projectile's callbacks
 	override void EEDelete(EntityAI parent)
 	{
-		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Remove(UpdateFlight);
-		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Remove(Detonate);
+		if (m_IsProjectile)
+		{
+			GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Remove(UpdateFlight);
+			GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Remove(Detonate);
+		}
 		super.EEDelete(parent);
 	}
 };

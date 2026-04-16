@@ -83,7 +83,10 @@ class stgw57_Base : RifleBoltLock_Base
 		Object spawnedObj = GetGame().CreateObject("Bullet_stgw57_grenade_frag", muzzleWorld, false, true, false);
 		EntityAI projectile = EntityAI.Cast(spawnedObj);
 		if (projectile)
-			projectile.SetVelocity(barrelDir * 80.0);
+		{
+			vector vel = barrelDir * 80.0;
+			projectile.SetVelocity(vel);
+		}
 
 		// Grenade consumed – triggers EEItemDetached which stops the loop
 		GetGame().ObjectDelete(grenadeAtt);

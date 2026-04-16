@@ -11,6 +11,8 @@ class StGw57_Grenade_Frag extends ItemBase
 		m_Velocity     = velocity;
 		// Update flight every 50 ms
 		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(UpdateFlight, 50, true);
+		// Safety: self-detonate after 6 seconds if terrain check never triggers
+		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(Detonate, 6000, false);
 	}
 
 	private void UpdateFlight()
@@ -37,9 +39,6 @@ class StGw57_Grenade_Frag extends ItemBase
 		}
 
 		SetPosition(newPos);
-
-		// Rotate grenade to face direction of travel
-		SetOrientation(m_Velocity.VectorToAngles());
 	}
 
 	void Detonate()
@@ -49,6 +48,7 @@ class StGw57_Grenade_Frag extends ItemBase
 		m_IsProjectile = false;
 
 		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Remove(UpdateFlight);
+		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Remove(Detonate);
 
 		vector pos    = GetPosition();
 		float  radius = 10.0;
@@ -69,10 +69,11 @@ class StGw57_Grenade_Frag extends ItemBase
 		GetGame().ObjectDelete(this);
 	}
 
-	// Cleanup timer if the object is deleted externally (e.g. admin tool)
+	// Cleanup timers if the object is deleted externally (e.g. admin tool)
 	override void EEDelete(EntityAI parent)
 	{
 		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Remove(UpdateFlight);
+		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Remove(Detonate);
 		super.EEDelete(parent);
 	}
 };

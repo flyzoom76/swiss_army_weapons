@@ -80,7 +80,7 @@ class stgw57_Base : RifleBoltLock_Base
 		vector muzzleWorld = ModelToWorld(GetSelectionPositionLS("usti hlavne"));
 		vector barrelDir   = GetDirection();
 
-		Object spawnedObj = GetGame().CreateObject("StGw57_Grenade_Frag", muzzleWorld, false, true, false);
+		Object spawnedObj = GetGame().CreateObject("StGw57_Grenade_Frag", muzzleWorld, false, false, false);
 		StGw57_Grenade_Frag grenade = StGw57_Grenade_Frag.Cast(spawnedObj);
 		if (grenade)
 			grenade.ActivateAsProjectile(barrelDir * 80.0);

@@ -100,7 +100,9 @@ class stgw57_Base : RifleBoltLock_Base
 
 	private void TestDetonate()
 	{
-		vector pos    = GetPosition();
+		PlayerBase root = GetHierarchyRootPlayer();
+		if (!root) return;
+		vector pos    = root.GetPosition();
 		float  radius = 10.0;
 
 		array<Object> objects = new array<Object>();

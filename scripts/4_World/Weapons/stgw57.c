@@ -82,13 +82,14 @@ class stgw57_Base : RifleBoltLock_Base
 		vector barrelDir   = GetDirection();
 
 		Object spawnedObj = GetGame().CreateObject("Bullet_stgw57_grenade_frag", muzzleWorld, false, true, false);
+		m_ActiveProjectile = spawnedObj;
+		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(DetonateProjectile, 6000, false);
+
 		EntityAI projectile = EntityAI.Cast(spawnedObj);
 		if (projectile)
 		{
 			vector vel = barrelDir * 80.0;
 			dBodyApplyImpulse(projectile, vel);
-			m_ActiveProjectile = spawnedObj;
-			GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(DetonateProjectile, 6000, false);
 		}
 
 		// Grenade consumed – triggers EEItemDetached which stops the loop
@@ -97,10 +98,15 @@ class stgw57_Base : RifleBoltLock_Base
 
 	private void DetonateProjectile()
 	{
-		if (!m_ActiveProjectile) return;
+		vector pos;
+		if (m_ActiveProjectile)
+			pos = m_ActiveProjectile.GetPosition();
+		else
+			return;
 
-		vector pos    = m_ActiveProjectile.GetPosition();
-		float  radius = 10.0;
+		float radius = 10.0;
+
+		SEffectManager.PlaySoundOnPos("Explosion_GrenadeHand_SoundSet", pos);
 
 		array<Object> objects = new array<Object>();
 		GetGame().GetObjectsAtPosition(pos, radius, objects, null);

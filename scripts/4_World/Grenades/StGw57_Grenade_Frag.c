@@ -9,9 +9,10 @@ class StGw57_Grenade_Frag extends ItemBase
 	{
 		m_IsProjectile = true;
 		m_Velocity     = velocity;
-		// DIAGNOSTIC: no flight, just detonate after 10 seconds
-		// to confirm object survives past creation
-		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(Detonate, 10000, false);
+		// Position update every 50 ms
+		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(UpdateFlight, 50, true);
+		// Self-detonate after 6 seconds
+		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(Detonate, 6000, false);
 	}
 
 	private void UpdateFlight()
@@ -24,20 +25,7 @@ class StGw57_Grenade_Frag extends ItemBase
 		// Apply gravity
 		m_Velocity[1] = m_Velocity[1] - 9.81 * DT;
 
-		vector pos    = GetPosition();
-		vector newPos = pos + m_Velocity * DT;
-
-		// Terrain contact check
-		float groundY = GetGame().SurfaceY(newPos[0], newPos[2]);
-		if (newPos[1] <= groundY)
-		{
-			newPos[1] = groundY;
-			SetPosition(newPos);
-			Detonate();
-			return;
-		}
-
-		SetPosition(newPos);
+		SetPosition(GetPosition() + m_Velocity * DT);
 	}
 
 	void Detonate()

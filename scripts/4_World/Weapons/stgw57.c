@@ -6,8 +6,9 @@ class stgw57_Base : RifleBoltLock_Base
 	}
 
 	// --- grenade launch tracking ---
-	private bool m_GrenadeMonitorActive = false;
-	private int  m_PrevAmmoCount        = -1;
+	private bool   m_GrenadeMonitorActive = false;
+	private int    m_PrevAmmoCount        = -1;
+	private Object m_ActiveProjectile     = null;
 
 	override void EEItemAttached(EntityAI item, string slot_name)
 	{
@@ -86,16 +87,42 @@ class stgw57_Base : RifleBoltLock_Base
 		{
 			vector vel = barrelDir * 80.0;
 			dBodyApplyImpulse(projectile, vel);
+			m_ActiveProjectile = spawnedObj;
+			GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(DetonateProjectile, 6000, false);
 		}
 
 		// Grenade consumed – triggers EEItemDetached which stops the loop
 		GetGame().ObjectDelete(grenadeAtt);
 	}
 
+	private void DetonateProjectile()
+	{
+		if (!m_ActiveProjectile) return;
+
+		vector pos    = m_ActiveProjectile.GetPosition();
+		float  radius = 10.0;
+
+		array<Object> objects = new array<Object>();
+		GetGame().GetObjectsAtPosition(pos, radius, objects, null);
+
+		foreach (Object obj : objects)
+		{
+			if (!obj.IsInherited(PlayerBase)) continue;
+			float d = vector.Distance(pos, obj.GetPosition());
+			if (d > radius) continue;
+			float dmg = Math.Lerp(100.0, 5.0, d / radius);
+			obj.ProcessDirectDamage(DT_CLOSE_COMBAT, null, "Torso", "Explosion_Heavy", pos, dmg);
+		}
+
+		GetGame().ObjectDelete(m_ActiveProjectile);
+		m_ActiveProjectile = null;
+	}
+
 	// Cleanup if weapon is deleted while monitoring
 	override void EEDelete(EntityAI parent)
 	{
 		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Remove(PollTreibladungFire);
+		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Remove(DetonateProjectile);
 		super.EEDelete(parent);
 	}
 };

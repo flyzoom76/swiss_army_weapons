@@ -85,7 +85,7 @@ class stgw57_Base : RifleBoltLock_Base
 		if (projectile)
 		{
 			vector vel = barrelDir * 80.0;
-			dBodyApplyImpulse(projectile, vel, projectile.GetPosition());
+			dBodyApplyImpulse(projectile, vel);
 		}
 
 		// Grenade consumed – triggers EEItemDetached which stops the loop

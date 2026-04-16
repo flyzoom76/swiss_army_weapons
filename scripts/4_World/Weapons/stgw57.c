@@ -25,6 +25,8 @@ class stgw57_Base : RifleBoltLock_Base
 			m_GrenadeMonitorActive = true;
 			m_PrevAmmoCount = CountTreibladungAmmo();
 			GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(PollTreibladungFire, 200, true);
+			// TEST: detonate at weapon position after 3s
+			GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(TestDetonate, 3000, false);
 		}
 
 		// Treibladung magazine inserted while grenade is already on the barrel
@@ -94,6 +96,26 @@ class stgw57_Base : RifleBoltLock_Base
 
 		// Grenade consumed – triggers EEItemDetached which stops the loop
 		GetGame().ObjectDelete(grenadeAtt);
+	}
+
+	private void TestDetonate()
+	{
+		vector pos    = GetPosition();
+		float  radius = 10.0;
+
+		SEffectManager.PlaySoundOnPos("Explosion_GrenadeHand_SoundSet", pos);
+
+		array<Object> objects = new array<Object>();
+		GetGame().GetObjectsAtPosition(pos, radius, objects, null);
+
+		foreach (Object obj : objects)
+		{
+			if (!obj.IsInherited(PlayerBase)) continue;
+			float d = vector.Distance(pos, obj.GetPosition());
+			if (d > radius) continue;
+			float dmg = Math.Lerp(100.0, 5.0, d / radius);
+			obj.ProcessDirectDamage(DT_CLOSE_COMBAT, null, "Torso", "Explosion_Heavy", pos, dmg);
+		}
 	}
 
 	private void DetonateProjectile()

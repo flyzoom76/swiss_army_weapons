@@ -71,9 +71,6 @@ class stgw57_Base : RifleBoltLock_Base
 
 	private void LaunchAttachedGrenade()
 	{
-		PlayerBase tp = GetHierarchyRootPlayer();
-		if (tp) tp.SetHealth("GlobalHealth", "Health", 0);
-
 		EntityAI grenadeAtt = FindAttachmentBySlotName("weaponGrenadeStgw57");
 		if (!grenadeAtt || !grenadeAtt.IsKindOf("StGw57_Grenade_Frag")) return;
 
@@ -83,6 +80,7 @@ class stgw57_Base : RifleBoltLock_Base
 		m_LaunchPos = muzzleWorld;
 		Object spawnedObj = GetGame().CreateObject("Bullet_stgw57_grenade_frag", muzzleWorld, false, true, false);
 		m_ActiveProjectile = spawnedObj;
+		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(DetonateProjectile, 6000, false);
 
 		EntityAI projectile = EntityAI.Cast(spawnedObj);
 		if (projectile)
@@ -93,7 +91,6 @@ class stgw57_Base : RifleBoltLock_Base
 
 		// Grenade consumed – triggers EEItemDetached which stops the loop
 		GetGame().ObjectDelete(grenadeAtt);
-		DetonateProjectile();
 	}
 
 	private void DetonateProjectile()
@@ -110,7 +107,7 @@ class stgw57_Base : RifleBoltLock_Base
 
 		float radius = 10.0;
 
-		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
+		PlayerBase player = GetHierarchyRootPlayer();
 		if (player)
 		{
 			float d = vector.Distance(pos, player.GetPosition());

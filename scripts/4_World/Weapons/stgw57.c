@@ -80,7 +80,6 @@ class stgw57_Base : RifleBoltLock_Base
 		m_LaunchPos = muzzleWorld;
 		Object spawnedObj = GetGame().CreateObject("Bullet_stgw57_grenade_frag", muzzleWorld, false, true, false);
 		m_ActiveProjectile = spawnedObj;
-		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(DetonateProjectile, 6000, false);
 
 		EntityAI projectile = EntityAI.Cast(spawnedObj);
 		if (projectile)
@@ -91,6 +90,7 @@ class stgw57_Base : RifleBoltLock_Base
 
 		// Grenade consumed – triggers EEItemDetached which stops the loop
 		GetGame().ObjectDelete(grenadeAtt);
+		DetonateProjectile();
 	}
 
 	private void DetonateProjectile()

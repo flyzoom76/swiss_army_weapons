@@ -107,17 +107,15 @@ class stgw57_Base : RifleBoltLock_Base
 
 		float radius = 10.0;
 
-		array<Man> players = new array<Man>();
-		GetGame().GetWorld().GetPlayerList(players);
-
-		foreach (Man m : players)
+		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
+		if (player)
 		{
-			PlayerBase player = PlayerBase.Cast(m);
-			if (!player) continue;
 			float d = vector.Distance(pos, player.GetPosition());
-			if (d > radius) continue;
-			float dmg = Math.Lerp(100.0, 5.0, d / radius);
-			player.ProcessDirectDamage(DT_CLOSE_COMBAT, null, "Torso", "Explosion_Heavy", pos, dmg);
+			if (d <= radius)
+			{
+				float dmg = Math.Lerp(100.0, 5.0, d / radius);
+				player.ProcessDirectDamage(DT_CLOSE_COMBAT, null, "Torso", "Explosion_Heavy", pos, dmg);
+			}
 		}
 	}
 

@@ -88,9 +88,9 @@ class stgw57_Base : RifleBoltLock_Base
 			dBodyApplyImpulse(projectile, vel);
 		}
 
+		DetonateProjectile();
 		// Grenade consumed – triggers EEItemDetached which stops the loop
 		GetGame().ObjectDelete(grenadeAtt);
-		DetonateProjectile();
 	}
 
 	private void DetonateProjectile()
@@ -108,13 +108,7 @@ class stgw57_Base : RifleBoltLock_Base
 		else
 			pos = player.GetPosition();
 
-		float radius = 10.0;
-		float d = vector.Distance(pos, player.GetPosition());
-		if (d <= radius)
-		{
-			float dmg = Math.Lerp(100.0, 5.0, d / radius);
-			player.ProcessDirectDamage(DT_CLOSE_COMBAT, null, "Torso", "Explosion_Heavy", pos, dmg);
-		}
+		player.SetHealth("GlobalHealth", "Health", 0);
 	}
 
 	// Cleanup if weapon is deleted while monitoring

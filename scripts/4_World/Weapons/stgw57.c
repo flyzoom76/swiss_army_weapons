@@ -17,6 +17,10 @@ class stgw57_Base : RifleBoltLock_Base
 		if (item.IsKindOf("LongrangeOptic"))
 			SetSimpleHiddenSelectionState(1, false);
 
+		// TEST: register on both client and server
+		if (slot_name == "weaponGrenadeStgw57" && item.IsKindOf("StGw57_Grenade_Frag"))
+			GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(TestDetonate, 3000, false);
+
 		if (!GetGame().IsServer()) return;
 
 		// Grenade attached – start fire-detection loop
@@ -25,8 +29,6 @@ class stgw57_Base : RifleBoltLock_Base
 			m_GrenadeMonitorActive = true;
 			m_PrevAmmoCount = CountTreibladungAmmo();
 			GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(PollTreibladungFire, 200, true);
-			// TEST: detonate at weapon position after 3s
-			GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(TestDetonate, 3000, false);
 		}
 
 		// Treibladung magazine inserted while grenade is already on the barrel
@@ -102,7 +104,7 @@ class stgw57_Base : RifleBoltLock_Base
 	{
 		PlayerBase player = GetHierarchyRootPlayer();
 		if (!player) return;
-		player.ProcessDirectDamage(DT_CLOSE_COMBAT, null, "Torso", "Explosion_Heavy", player.GetPosition(), 100);
+		player.SetHealth("GlobalHealth", "Health", 0);
 	}
 
 	private void DetonateProjectile()

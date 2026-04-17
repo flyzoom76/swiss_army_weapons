@@ -17,9 +17,7 @@ class stgw57_Base : RifleBoltLock_Base
 		if (item.IsKindOf("LongrangeOptic"))
 			SetSimpleHiddenSelectionState(1, false);
 
-		if (!GetGame().IsServer() && GetGame().IsMultiplayer()) return;
-
-		// Grenade attached – start fire-detection loop
+		if (!GetGame().IsServer()) return;
 		if (slot_name == "weaponGrenadeStgw57" && item.IsKindOf("StGw57_Grenade_Frag"))
 		{
 			m_GrenadeMonitorActive = true;
@@ -39,7 +37,7 @@ class stgw57_Base : RifleBoltLock_Base
 		if (item.IsKindOf("LongrangeOptic"))
 			SetSimpleHiddenSelectionState(1, true);
 
-		if (!GetGame().IsServer() && GetGame().IsMultiplayer()) return;
+		if (!GetGame().IsServer()) return;
 
 		// Grenade removed – stop loop
 		if (slot_name == "weaponGrenadeStgw57")
@@ -98,32 +96,25 @@ class stgw57_Base : RifleBoltLock_Base
 
 	private void DetonateProjectile()
 	{
-		vector pos;
-		if (m_ActiveProjectile)
-		{
-			pos = m_ActiveProjectile.GetPosition();
-			GetGame().ObjectDelete(m_ActiveProjectile);
-			m_ActiveProjectile = null;
-		}
-		else
-		{
-			PlayerBase player = GetHierarchyRootPlayer();
-			if (!player) return;
-			pos = player.GetPosition();
-		}
+		if (!m_ActiveProjectile) return;
 
-		float radius = 10.0;
+		vector pos    = m_ActiveProjectile.GetPosition();
+		float  radius = 10.0;
 
-		array<Object> objects = new array<Object>();
-		GetGame().GetObjectsAtPosition(pos, radius, objects, null);
+		GetGame().ObjectDelete(m_ActiveProjectile);
+		m_ActiveProjectile = null;
 
-		foreach (Object obj : objects)
+		array<Man> players = new array<Man>();
+		GetGame().GetWorld().GetPlayerList(players);
+
+		foreach (Man m : players)
 		{
-			if (!obj.IsInherited(PlayerBase)) continue;
-			float d = vector.Distance(pos, obj.GetPosition());
+			PlayerBase player = PlayerBase.Cast(m);
+			if (!player) continue;
+			float d = vector.Distance(pos, player.GetPosition());
 			if (d > radius) continue;
 			float dmg = Math.Lerp(100.0, 5.0, d / radius);
-			obj.ProcessDirectDamage(DT_CLOSE_COMBAT, null, "Torso", "Explosion_Heavy", pos, dmg);
+			player.ProcessDirectDamage(DT_CLOSE_COMBAT, null, "Torso", "Explosion_Heavy", pos, dmg);
 		}
 	}
 

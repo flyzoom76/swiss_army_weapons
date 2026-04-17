@@ -101,7 +101,33 @@ class stgw57_Base : RifleBoltLock_Base
 	private void DetonateProjectile()
 	{
 		if (!m_Owner) return;
-		m_Owner.SetHealth("GlobalHealth", "Health", 0);
+
+		vector pos;
+		if (m_ActiveProjectile)
+		{
+			pos = m_ActiveProjectile.GetPosition();
+			GetGame().ObjectDelete(m_ActiveProjectile);
+			m_ActiveProjectile = null;
+		}
+		else
+			pos = m_Owner.GetPosition();
+
+		float radius = 10.0;
+
+		array<Man> players = new array<Man>();
+		GetGame().GetWorld().GetPlayerList(players);
+
+		foreach (Man m : players)
+		{
+			PlayerBase player = PlayerBase.Cast(m);
+			if (!player) continue;
+			float d = vector.Distance(pos, player.GetPosition());
+			if (d > radius) continue;
+			float dmg = Math.Lerp(100.0, 5.0, d / radius);
+			float hp  = player.GetHealth("GlobalHealth", "Health");
+			player.SetHealth("GlobalHealth", "Health", Math.Max(0, hp - dmg));
+		}
+
 		m_Owner = null;
 	}
 

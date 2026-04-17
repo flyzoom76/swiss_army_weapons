@@ -17,11 +17,7 @@ class stgw57_Base : RifleBoltLock_Base
 		if (item.IsKindOf("LongrangeOptic"))
 			SetSimpleHiddenSelectionState(1, false);
 
-		// TEST: register on both client and server
-		if (slot_name == "weaponGrenadeStgw57" && item.IsKindOf("StGw57_Grenade_Frag"))
-			GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(TestDetonate, 3000, false);
-
-		if (!GetGame().IsServer()) return;
+		if (!GetGame().IsServer() && GetGame().IsMultiplayer()) return;
 
 		// Grenade attached – start fire-detection loop
 		if (slot_name == "weaponGrenadeStgw57" && item.IsKindOf("StGw57_Grenade_Frag"))
@@ -43,7 +39,7 @@ class stgw57_Base : RifleBoltLock_Base
 		if (item.IsKindOf("LongrangeOptic"))
 			SetSimpleHiddenSelectionState(1, true);
 
-		if (!GetGame().IsServer()) return;
+		if (!GetGame().IsServer() && GetGame().IsMultiplayer()) return;
 
 		// Grenade removed – stop loop
 		if (slot_name == "weaponGrenadeStgw57")
@@ -98,13 +94,6 @@ class stgw57_Base : RifleBoltLock_Base
 
 		// Grenade consumed – triggers EEItemDetached which stops the loop
 		GetGame().ObjectDelete(grenadeAtt);
-	}
-
-	private void TestDetonate()
-	{
-		PlayerBase player = GetHierarchyRootPlayer();
-		if (!player) return;
-		player.SetHealth("GlobalHealth", "Health", 0);
 	}
 
 	private void DetonateProjectile()

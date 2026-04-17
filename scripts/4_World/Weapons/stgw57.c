@@ -17,7 +17,6 @@ class stgw57_Base : RifleBoltLock_Base
 		if (item.IsKindOf("LongrangeOptic"))
 			SetSimpleHiddenSelectionState(1, false);
 
-		if (!GetGame().IsServer()) return;
 		if (slot_name == "weaponGrenadeStgw57" && item.IsKindOf("StGw57_Grenade_Frag"))
 		{
 			m_GrenadeMonitorActive = true;
@@ -36,8 +35,6 @@ class stgw57_Base : RifleBoltLock_Base
 
 		if (item.IsKindOf("LongrangeOptic"))
 			SetSimpleHiddenSelectionState(1, true);
-
-		if (!GetGame().IsServer()) return;
 
 		// Grenade removed – stop loop
 		if (slot_name == "weaponGrenadeStgw57")

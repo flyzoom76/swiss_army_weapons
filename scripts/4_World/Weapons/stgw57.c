@@ -6,10 +6,11 @@ class stgw57_Base : RifleBoltLock_Base
 	}
 
 	// --- grenade launch tracking ---
-	private bool   m_GrenadeMonitorActive = false;
-	private int    m_PrevAmmoCount        = -1;
-	private Object m_ActiveProjectile     = null;
-	private vector m_LaunchPos;
+	private bool       m_GrenadeMonitorActive = false;
+	private int        m_PrevAmmoCount        = -1;
+	private Object     m_ActiveProjectile     = null;
+	private vector     m_LaunchPos;
+	private PlayerBase m_Owner                = null;
 
 	override void EEItemAttached(EntityAI item, string slot_name)
 	{
@@ -74,6 +75,9 @@ class stgw57_Base : RifleBoltLock_Base
 		EntityAI grenadeAtt = FindAttachmentBySlotName("weaponGrenadeStgw57");
 		if (!grenadeAtt || !grenadeAtt.IsKindOf("StGw57_Grenade_Frag")) return;
 
+		// Store player reference while hierarchy is still intact
+		m_Owner = GetHierarchyRootPlayer();
+
 		vector muzzleWorld = ModelToWorld(GetSelectionPositionLS("usti hlavne"));
 		vector barrelDir   = GetDirection();
 
@@ -88,15 +92,15 @@ class stgw57_Base : RifleBoltLock_Base
 			dBodyApplyImpulse(projectile, vel);
 		}
 
-		DetonateProjectile();
 		// Grenade consumed – triggers EEItemDetached which stops the loop
 		GetGame().ObjectDelete(grenadeAtt);
+
+		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(DetonateProjectile, 6000, false);
 	}
 
 	private void DetonateProjectile()
 	{
-		PlayerBase player = GetHierarchyRootPlayer();
-		if (!player) return;
+		if (!m_Owner) return;
 
 		vector pos;
 		if (m_ActiveProjectile)
@@ -106,9 +110,25 @@ class stgw57_Base : RifleBoltLock_Base
 			m_ActiveProjectile = null;
 		}
 		else
-			pos = player.GetPosition();
+			pos = m_LaunchPos;
 
-		player.SetHealth("GlobalHealth", "Health", 0);
+		float radius = 10.0;
+
+		array<Man> players = new array<Man>();
+		GetGame().GetWorld().GetPlayerList(players);
+
+		foreach (Man m : players)
+		{
+			PlayerBase player = PlayerBase.Cast(m);
+			if (!player) continue;
+			float d = vector.Distance(pos, player.GetPosition());
+			if (d > radius) continue;
+			float currentHp = player.GetHealth("GlobalHealth", "Health");
+			float dmg       = Math.Lerp(100.0, 5.0, d / radius);
+			player.SetHealth("GlobalHealth", "Health", Math.Max(0, currentHp - dmg));
+		}
+
+		m_Owner = null;
 	}
 
 	// Cleanup if weapon is deleted while monitoring

@@ -9,6 +9,7 @@ class stgw57_Base : RifleBoltLock_Base
 	private bool   m_GrenadeMonitorActive = false;
 	private int    m_PrevAmmoCount        = -1;
 	private Object m_ActiveProjectile     = null;
+	private vector m_LaunchPos;
 
 	override void EEItemAttached(EntityAI item, string slot_name)
 	{
@@ -76,6 +77,7 @@ class stgw57_Base : RifleBoltLock_Base
 		vector muzzleWorld = ModelToWorld(GetSelectionPositionLS("usti hlavne"));
 		vector barrelDir   = GetDirection();
 
+		m_LaunchPos = muzzleWorld;
 		Object spawnedObj = GetGame().CreateObject("Bullet_stgw57_grenade_frag", muzzleWorld, false, true, false);
 		m_ActiveProjectile = spawnedObj;
 		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(DetonateProjectile, 6000, false);
@@ -93,13 +95,17 @@ class stgw57_Base : RifleBoltLock_Base
 
 	private void DetonateProjectile()
 	{
-		if (!m_ActiveProjectile) return;
+		vector pos;
+		if (m_ActiveProjectile)
+		{
+			pos = m_ActiveProjectile.GetPosition();
+			GetGame().ObjectDelete(m_ActiveProjectile);
+			m_ActiveProjectile = null;
+		}
+		else
+			pos = m_LaunchPos;
 
-		vector pos    = m_ActiveProjectile.GetPosition();
-		float  radius = 10.0;
-
-		GetGame().ObjectDelete(m_ActiveProjectile);
-		m_ActiveProjectile = null;
+		float radius = 10.0;
 
 		array<Man> players = new array<Man>();
 		GetGame().GetWorld().GetPlayerList(players);

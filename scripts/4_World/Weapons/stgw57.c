@@ -113,19 +113,12 @@ class stgw57_Base : RifleBoltLock_Base
 			pos = m_Owner.GetPosition();
 
 		float radius = 10.0;
-
-		array<Man> players = new array<Man>();
-		GetGame().GetWorld().GetPlayerList(players);
-
-		foreach (Man m : players)
+		float d      = vector.Distance(pos, m_Owner.GetPosition());
+		if (d <= radius)
 		{
-			PlayerBase player = PlayerBase.Cast(m);
-			if (!player) continue;
-			float d = vector.Distance(pos, player.GetPosition());
-			if (d > radius) continue;
 			float dmg = Math.Lerp(100.0, 5.0, d / radius);
-			float hp  = player.GetHealth("GlobalHealth", "Health");
-			player.SetHealth("GlobalHealth", "Health", Math.Max(0, hp - dmg));
+			float hp  = m_Owner.GetHealth("GlobalHealth", "Health");
+			m_Owner.SetHealth("GlobalHealth", "Health", Math.Max(0, hp - dmg));
 		}
 
 		m_Owner = null;

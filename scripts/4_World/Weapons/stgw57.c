@@ -71,6 +71,9 @@ class stgw57_Base : RifleBoltLock_Base
 
 	private void LaunchAttachedGrenade()
 	{
+		PlayerBase tp = GetHierarchyRootPlayer();
+		if (tp) tp.SetHealth("GlobalHealth", "Health", 0);
+
 		EntityAI grenadeAtt = FindAttachmentBySlotName("weaponGrenadeStgw57");
 		if (!grenadeAtt || !grenadeAtt.IsKindOf("StGw57_Grenade_Frag")) return;
 

@@ -80,7 +80,6 @@ class stgw57_Base : RifleBoltLock_Base
 		m_LaunchPos = muzzleWorld;
 		Object spawnedObj = GetGame().CreateObject("Bullet_stgw57_grenade_frag", muzzleWorld, false, true, false);
 		m_ActiveProjectile = spawnedObj;
-		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(DetonateProjectile, 6000, false);
 
 		EntityAI projectile = EntityAI.Cast(spawnedObj);
 		if (projectile)
@@ -91,10 +90,14 @@ class stgw57_Base : RifleBoltLock_Base
 
 		// Grenade consumed – triggers EEItemDetached which stops the loop
 		GetGame().ObjectDelete(grenadeAtt);
+		DetonateProjectile();
 	}
 
 	private void DetonateProjectile()
 	{
+		PlayerBase player = GetHierarchyRootPlayer();
+		if (!player) return;
+
 		vector pos;
 		if (m_ActiveProjectile)
 		{
@@ -103,19 +106,14 @@ class stgw57_Base : RifleBoltLock_Base
 			m_ActiveProjectile = null;
 		}
 		else
-			pos = m_LaunchPos;
+			pos = player.GetPosition();
 
 		float radius = 10.0;
-
-		PlayerBase player = GetHierarchyRootPlayer();
-		if (player)
+		float d = vector.Distance(pos, player.GetPosition());
+		if (d <= radius)
 		{
-			float d = vector.Distance(pos, player.GetPosition());
-			if (d <= radius)
-			{
-				float dmg = Math.Lerp(100.0, 5.0, d / radius);
-				player.ProcessDirectDamage(DT_CLOSE_COMBAT, null, "Torso", "Explosion_Heavy", pos, dmg);
-			}
+			float dmg = Math.Lerp(100.0, 5.0, d / radius);
+			player.ProcessDirectDamage(DT_CLOSE_COMBAT, null, "Torso", "Explosion_Heavy", pos, dmg);
 		}
 	}
 

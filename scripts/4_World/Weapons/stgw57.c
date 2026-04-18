@@ -88,8 +88,13 @@ class stgw57_Base : RifleBoltLock_Base
 		EntityAI projectile = EntityAI.Cast(spawnedObj);
 		if (projectile)
 		{
-			vector vel = barrelDir * 80.0;
-			dBodyApplyImpulse(projectile, vel);
+			vector mat[4];
+			Math3D.DirectionAndUpMatrix(barrelDir, vector.Up, mat);
+			mat[3] = muzzleWorld;
+			projectile.SetTransform(mat);
+
+			dBodyActive(projectile, ActiveState.ACTIVE);
+			dBodySetLinearVelocity(projectile, barrelDir * 80.0);
 		}
 
 		// Grenade consumed – triggers EEItemDetached which stops the loop

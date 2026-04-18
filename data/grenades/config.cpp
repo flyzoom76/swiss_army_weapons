@@ -42,6 +42,16 @@ class CfgAmmo
 class CfgVehicles
 {
 	class Inventory_Base;
+	class Bullet_stgw57_grenade_frag_obj : Inventory_Base
+	{
+		scope = 1;
+		model = "swiss_army_weapons\data\grenades\data\stgw57_grenade_frag.p3d";
+		weight = 400;
+		itemSize[] = {1,1};
+		hiddenSelections[] = {"zbytek"};
+		hiddenSelectionsTextures[] = {"swiss_army_weapons\data\grenades\data\stgw57_grenade_frag_co.paa"};
+		hiddenSelectionsMaterials[] = {"swiss_army_weapons\data\grenades\data\stgw57_grenade_frag.rvmat"};
+	};
 	class StGw57_Grenade_Frag: Inventory_Base
 	{
 		scope = 2;

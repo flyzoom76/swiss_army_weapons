@@ -82,7 +82,7 @@ class stgw57_Base : RifleBoltLock_Base
 		vector barrelDir   = GetDirection();
 
 		m_LaunchPos = muzzleWorld;
-		Object spawnedObj = GetGame().CreateObject("Bullet_stgw57_grenade_frag", muzzleWorld, false, true, false);
+		Object spawnedObj = GetGame().CreateObject("Bullet_stgw57_grenade_frag_obj", muzzleWorld, false, true, false);
 		m_ActiveProjectile = spawnedObj;
 
 		EntityAI projectile = EntityAI.Cast(spawnedObj);

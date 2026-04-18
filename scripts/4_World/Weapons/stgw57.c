@@ -93,8 +93,7 @@ class stgw57_Base : RifleBoltLock_Base
 			mat[3] = muzzleWorld;
 			projectile.SetTransform(mat);
 
-			dBodyActive(projectile, ActiveState.ACTIVE);
-			dBodySetLinearVelocity(projectile, barrelDir * 80.0);
+			dBodyApplyImpulse(projectile, barrelDir * 80.0);
 		}
 
 		// Grenade consumed – triggers EEItemDetached which stops the loop

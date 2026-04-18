@@ -112,6 +112,8 @@ class stgw57_Base : RifleBoltLock_Base
 		else
 			pos = m_Owner.GetPosition();
 
+		SEffectManager.PlaySoundOnPos("stgw57_Grenade_Explosion_SoundSet", pos);
+
 		float radius = 10.0;
 		float d      = vector.Distance(pos, m_Owner.GetPosition());
 		if (d <= radius)

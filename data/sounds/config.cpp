@@ -59,6 +59,24 @@ class CfgSoundShaders
 		samples[] = {{"swiss_army_weapons\data\sounds\stgw57_suppressed_shot",1}};
 		volume = 0.6;
 	};
+	class base_closeExplosion_SoundShader;
+	class base_midExplosion_SoundShader;
+	class base_distExplosion_SoundShader;
+	class stgw57_grenade_closeExplosion_SoundShader: base_closeExplosion_SoundShader
+	{
+		samples[] = {{"swiss_army_weapons\data\sounds\stgw57_grenade_frag_close_explosion_03",1}};
+		volume = 1.0;
+	};
+	class stgw57_grenade_midExplosion_SoundShader: base_midExplosion_SoundShader
+	{
+		samples[] = {{"swiss_army_weapons\data\sounds\stgw57_grenade_frag_mid_explosion_03",1}};
+		volume = 0.8;
+	};
+	class stgw57_grenade_distExplosion_SoundShader: base_distExplosion_SoundShader
+	{
+		samples[] = {{"swiss_army_weapons\data\sounds\stgw57_grenade_frag_dist_explosion_03",1}};
+		volume = 0.6;
+	};
 };
 class CfgSoundSets
 {
@@ -71,5 +89,10 @@ class CfgSoundSets
 	class stgw57_SilencedShot_SoundSet: Rifle_silencerHomemade_Base_SoundSet
 	{
 		soundShaders[] = {"stgw57_silencedcloseShot_SoundShader","stgw57_silencedmidShot_SoundShader","stgw57_silenceddistShot_SoundShader"};
+	};
+	class Explosion_GrenadeHand_SoundSet;
+	class stgw57_Grenade_Explosion_SoundSet: Explosion_GrenadeHand_SoundSet
+	{
+		soundShaders[] = {"stgw57_grenade_closeExplosion_SoundShader","stgw57_grenade_midExplosion_SoundShader","stgw57_grenade_distExplosion_SoundShader"};
 	};
 };
